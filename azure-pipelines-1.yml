@@ -25,5 +25,5 @@ steps:
           echo "Using a global secret var mapped in the pipeline does not work either: %GLOBAL_MYSECRET%"
           echo "Using a global non-secret var mapped in the pipeline works: %GLOBAL_MYSECRET% "
           echo "Using the mapped env var for this task works and is recommended: %GLOBAL_MYSECRET% "
-  env:
+  # env:
     # MY_MAPPED_ENV_VAR: %GLOBAL_MYSECRET% # the recommended way to map to an env variable
