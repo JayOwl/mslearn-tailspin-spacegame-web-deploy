@@ -20,7 +20,9 @@ steps:
       echo ${{ variables.one }} # outputs initialValue
       echo $(one)
     displayName: First variable pass
-  - bash: echo '##vso[task.setvariable variable=one]secondValue'
+  - task: CmdLine@2
+    inputs:
+      script: 'echo ''##vso[task.setvariable variable=one]secondValue'''
     displayName: Set new variable value
   - script: |
       echo ${{ variables.one }} # outputs initialValue
