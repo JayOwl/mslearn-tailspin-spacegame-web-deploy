@@ -15,36 +15,48 @@ pool:
 
 
 stages:
-
-- stage: A
-  displayName: 'test1'
+- stage: build
+  displayName: 'build'
   variables:
-  - name: InstrumentationKey
-    value: 'stage A scoped key'
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A  $(InstrumentationKey)'
+    - script: 'echo Build Job'
 
-- stage: B
-  displayName: 'test2'
+- stage: dev1
+  displayName: 'dev staging'
   dependsOn:
-  - A
+  - build
+    variables:
+  - name: InstrumentationKey
+    value: 'stage A scoped key'
   jobs:
   - job: B 
     steps:
-    - script: 'echo Write your commands here Job B $(InstrumentationKey)'
+    - script: 'echo Build Dev $(InstrumentationKey)'
+
+- stage: dev2
+  displayName: 'dev'
+  dependsOn:
+  - build
+    variables:
+  - name: InstrumentationKey
+    value: 'stage A scoped key'
+  jobs:
+  - job: C 
+    steps:
+    - script: 'echo Build Dev $(InstrumentationKey)'
 
 # stage C runs if B succeeds
-- stage: C
-  displayName: 'test3'
+- stage: prod1
+  displayName: 'dev stag'
   dependsOn:
-  - B
+  - dev2
   condition: succeeded('B')
   variables:
     - name: InstrumentationKey
       value: 'stage C scoped variable'
   jobs:
-  - job: C 
+  - job: D 
     steps:
     - script: 'echo Write your commands here Job C  $(InstrumentationKey)'
