@@ -21,7 +21,7 @@ stages:
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A   %ApplicationInsightsInstrumentationKey%'
+    - script: 'echo Write your commands here Job B   %ApplicationInsightsInstrumentationKey%, $(ApplicationInsightsInstrumentationKey)'
 
 - stage: B
   displayName: 'test2'
