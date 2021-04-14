@@ -21,7 +21,7 @@ stages:
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A  %ApplicationInsightsInstrumentationKey%'    
+    - script: 'echo Write your commands here Job A   %ApplicationInsightsInstrumentationKey%'    
 
 - stage: B
   displayName: 'SafetyLine2'
@@ -43,4 +43,4 @@ stages:
   jobs:
   - job: C 
     steps:
-    - script: 'echo Write your commands here Job C  %ApplicationInsightsInstrumentationKey%'
+    - script: 'echo Write your commands here Job C   %ApplicationInsightsInstrumentationKey2%'
