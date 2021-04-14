@@ -17,11 +17,11 @@ stages:
   displayName: 'SafetyLine1'
   variables:
   - name: ApplicationInsightsInstrumentationKey     
-    value: $(ApplicationInsightsInstrumentationKey)
+    value:  %ApplicationInsightsInstrumentationKey%
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A  $(ApplicationInsightsInstrumentationKey)'    
+    - script: 'echo Write your commands here Job A  %ApplicationInsightsInstrumentationKey%'    
 
 - stage: B
   displayName: 'SafetyLine2'
@@ -30,7 +30,7 @@ stages:
   jobs:
   - job: B 
     steps:
-    - script: 'echo Write your commands here Job C  $(ApplicationInsightsInstrumentationKey)'   
+    - script: 'echo Write your commands here Job C   %ApplicationInsightsInstrumentationKey%'  
 
 # stage C runs if B succeeds
 - stage: C
@@ -39,8 +39,8 @@ stages:
   condition: succeeded('B')
   variables:
     - name: ApplicationInsightsInstrumentationKey     
-      value: 'my thirds key'
+      value:  %ApplicationInsightsInstrumentationKey2%
   jobs:
   - job: C 
     steps:
-    - script: 'echo Write your commands here Job C $(ApplicationInsightsInstrumentationKey2)'
+    - script: 'echo Write your commands here Job C  %ApplicationInsightsInstrumentationKey%'
