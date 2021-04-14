@@ -11,8 +11,7 @@ pool:
   demands:
   - agent.name -equals MvsAgent01
   variables:
-    - name: InstrumentationKeyGlobal
-      value: myglobalyscopedkey
+    InstrumentationKeyGlobal: 'myglobalyscopedkey'
 
 
 stages:
@@ -33,7 +32,7 @@ stages:
   jobs:
   - job: B 
     steps:
-    - script: 'echo Write your commands here Job B ${{ variables.InstrumentationKeyGlobal }}'
+    - script: 'echo Write your commands here Job B $(InstrumentationKeyGlobal)'
 
 # stage C runs if B succeeds
 - stage: C
