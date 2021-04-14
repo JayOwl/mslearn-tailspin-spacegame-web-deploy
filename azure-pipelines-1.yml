@@ -21,7 +21,7 @@ stages:
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A'    
+    - script: 'echo Write your commands here Job A  $(ApplicationInsightsInstrumentationKey)'    
 
 - stage: B
   displayName: 'SafetyLine2'
@@ -30,7 +30,7 @@ stages:
   jobs:
   - job: B 
     steps:
-    - script: 'echo Write your commands here Job C'   
+    - script: 'echo Write your commands here Job C  $(ApplicationInsightsInstrumentationKey)'   
 
 # stage C runs if B succeeds
 - stage: C
@@ -43,4 +43,4 @@ stages:
   jobs:
   - job: C 
     steps:
-    - script: 'echo Write your commands here Job C'
+    - script: 'echo Write your commands here Job C $(ApplicationInsightsInstrumentationKey2)'
