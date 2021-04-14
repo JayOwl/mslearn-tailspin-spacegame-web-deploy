@@ -17,7 +17,7 @@ stages:
   displayName: 'SafetyLine1'
   variables:
   - name: ApplicationInsightsInstrumentationKey     
-    value:  %ApplicationInsightsInstrumentationKey%
+    value: %ApplicationInsightsInstrumentationKey%
   jobs:
   - job: A 
     steps:
@@ -39,7 +39,7 @@ stages:
   condition: succeeded('B')
   variables:
     - name: ApplicationInsightsInstrumentationKey     
-      value:  %ApplicationInsightsInstrumentationKey2%
+      value: %ApplicationInsightsInstrumentationKey2%
   jobs:
   - job: C 
     steps:
