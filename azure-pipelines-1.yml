@@ -28,7 +28,7 @@ stages:
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A   %AIkey1%, $(InstrumentationKey)'
+    - script: 'echo Write your commands here Job A   $(AIkey1), $(InstrumentationKey)'
 
 - stage: B
   displayName: 'test2'
