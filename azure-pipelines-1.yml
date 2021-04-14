@@ -14,9 +14,9 @@ pool:
 
 stages:
 - stage: A
-  displayName: 'SafetyLine1'
+  displayName: 'test1'
   variables:
-  - name: ApplicationInsightsInstrumentationKey     
+  - name: ApplicationInsightsInstrumentationKey
     value: '%ApplicationInsightsInstrumentationKey%'
   jobs:
   - job: A 
@@ -24,7 +24,7 @@ stages:
     - script: 'echo Write your commands here Job A   %ApplicationInsightsInstrumentationKey%'
 
 - stage: B
-  displayName: 'SafetyLine2'
+  displayName: 'test2'
   dependsOn:
   - A
   jobs:
@@ -34,13 +34,14 @@ stages:
 
 # stage C runs if B succeeds
 - stage: C
+  displayName: 'test3'
   dependsOn:
   - B
   condition: succeeded('B')
   variables:
-    - name: ApplicationInsightsInstrumentationKey     
+    - name: ApplicationInsightsInstrumentationKey
       value: '%ApplicationInsightsInstrumentationKey2%'
   jobs:
   - job: C 
     steps:
-    - script: 'echo Write your commands here Job C   %ApplicationInsightsInstrumentationKey2%'
+    - script: 'echo Write your commands here Job C   %ApplicationInsightsInstrumentationKey2%,  $(ApplicationInsightsInstrumentationKey)'
