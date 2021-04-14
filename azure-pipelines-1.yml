@@ -10,18 +10,25 @@ pool:
   name: MVCLocalPool
   demands:
   - agent.name -equals MvsAgent01
+  variables:
+  - name: AIkey1
+    value: 'my ai key 1'
+  - name: AIkey2
+    value: 'my ai key 2'
+  - name: AIkey3
+    value: 'my ai key 3'
 
 
 stages:
 - stage: A
   displayName: 'test1'
   variables:
-  - name: ApplicationInsightsInstrumentationKey
-    value: '%ApplicationInsightsInstrumentationKey%'
+  - name: InstrumentationKey
+    value: '%AIkey1%'
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A   %ApplicationInsightsInstrumentationKey%, $(ApplicationInsightsInstrumentationKey)'
+    - script: 'echo Write your commands here Job A   %AIkey1%, $(InstrumentationKey)'
 
 - stage: B
   displayName: 'test2'
@@ -30,7 +37,7 @@ stages:
   jobs:
   - job: B 
     steps:
-    - script: 'echo Write your commands here Job B   %ApplicationInsightsInstrumentationKey%, $(ApplicationInsightsInstrumentationKey)'
+    - script: 'echo Write your commands here Job B $(InstrumentationKey)'
 
 # stage C runs if B succeeds
 - stage: C
@@ -39,9 +46,9 @@ stages:
   - B
   condition: succeeded('B')
   variables:
-    - name: ApplicationInsightsInstrumentationKey
-      value: '%ApplicationInsightsInstrumentationKey2%'
+    - name: InstrumentationKey
+      value: '%AIkey3%'
   jobs:
   - job: C 
     steps:
-    - script: 'echo Write your commands here Job C   %ApplicationInsightsInstrumentationKey2%,  $(ApplicationInsightsInstrumentationKey)'
+    - script: 'echo Write your commands here Job C   %AIkey3%,  $(InstrumentationKey)'
