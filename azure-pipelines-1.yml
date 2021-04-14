@@ -28,7 +28,7 @@ stages:
   displayName: 'dev staging'
   dependsOn:
   - build
-    variables:
+  variables:
   - name: InstrumentationKey
     value: 'stage dev1 scoped dev1 key'
   jobs:
@@ -40,7 +40,7 @@ stages:
   displayName: 'dev'
   dependsOn:
   - build
-    variables:
+  variables:
   - name: InstrumentationKey
     value: 'stage dev scoped dev key'
   jobs:
