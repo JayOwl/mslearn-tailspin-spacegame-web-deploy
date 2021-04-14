@@ -32,7 +32,7 @@ stages:
   jobs:
   - job: B 
     steps:
-    - script: 'echo Write your commands here Job B $(InstrumentationKeyGlobal)'
+    - script: 'echo Write your commands here Job B ${{ InstrumentationKeyGlobal }}'
 
 # stage C runs if B succeeds
 - stage: C
