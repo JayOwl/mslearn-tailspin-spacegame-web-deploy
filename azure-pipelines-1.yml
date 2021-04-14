@@ -11,17 +11,17 @@ pool:
   demands:
   - agent.name -equals MvsAgent01
 
-variables:
- GLOBAL_MYSECRET: $(mySecret) # this will not work because the secret variable needs to be mapped as env
- GLOBAL_MY_MAPPED_ENV_VAR: $(nonSecretVariable) # this works because it's not a secret.
+# variables:
+#  GLOBAL_MYSECRET: $(mySecret) # this will not work because the secret variable needs to be mapped as env
+#  GLOBAL_MY_MAPPED_ENV_VAR: $(nonSecretVariable) # this works because it's not a secret.
 
 steps:
 
 - task: CmdLine@2
   inputs:
     script: |
-      echo Using an input-macro works: %VAR1%
-      echo Using the env var directly does not work: %VAR1%
+      echo Using an input-macro works: %GLOBAL_MYSECRET%
+      echo Using the env var directly does not work: %GLOBAL_MYSECRET%
       echo Using a global secret var mapped in the pipeline does not work either: %GLOBAL_MYSECRET%
       echo Using a global non-secret var mapped in the pipeline works: %GLOBAL_MYSECRET% 
       echo Using the mapped env var for this task works and is recommended: %GLOBAL_MYSECRET% 
