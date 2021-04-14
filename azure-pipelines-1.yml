@@ -12,7 +12,7 @@ pool:
   - agent.name -equals MvsAgent01
   variables:
   - name: InstrumentationKey
-    value: $(ApplicationInsightsInstrumentationKey1)
+    value: 'my globaly scoped key'
 
 
 stages:
@@ -20,11 +20,11 @@ stages:
   displayName: 'test1'
   variables:
   - name: InstrumentationKey
-    value: $(ApplicationInsightsInstrumentationKey1)
+    value: 'stage A scoped key'
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A   $(ApplicationInsightsInstrumentationKey1), $(InstrumentationKey)'
+    - script: 'echo Write your commands here Job A  $(InstrumentationKey)'
 
 - stage: B
   displayName: 'test2'
@@ -43,8 +43,8 @@ stages:
   condition: succeeded('B')
   variables:
     - name: InstrumentationKey
-      value: $(ApplicationInsightsInstrumentationKey2)
+      value: 'stage C scoped variable'
   jobs:
   - job: C 
     steps:
-    - script: 'echo Write your commands here Job C   $(ApplicationInsightsInstrumentationKey2),  $(InstrumentationKey)'
+    - script: 'echo Write your commands here Job C  $(InstrumentationKey)'
