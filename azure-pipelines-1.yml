@@ -35,10 +35,11 @@ stages:
 # stage C runs if B succeeds
 - stage: C
   dependsOn:
+  - B
   condition: succeeded('B')
   variables:
     - name: ApplicationInsightsInstrumentationKey     
-      value: 'my second key'
+      value: 'my thirds key'
   jobs:
   - job: C 
     steps:
