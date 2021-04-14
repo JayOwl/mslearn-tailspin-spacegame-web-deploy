@@ -11,8 +11,7 @@ pool:
   demands:
   - agent.name -equals MvsAgent01
   variables:
-  - name: InstrumentationKeyGlobal
-    value: 'my globaly scoped key'
+    InstrumentationKeyGlobal: 'my globaly scoped key'
 
 
 stages:
