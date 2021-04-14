@@ -15,6 +15,9 @@ pool:
 
 
 stages:
+  variables:
+  - name: InstrumentationKeyGlobal
+     value: 'mygstageyscopedkey'
 - stage: A
   displayName: 'test1'
   variables:
@@ -32,7 +35,7 @@ stages:
   jobs:
   - job: B 
     steps:
-    - script: 'echo Write your commands here Job B $(ApplicationInsightsInstrumentationKey)'
+    - script: 'echo Write your commands here Job B $(InstrumentationKeyGlobal)'
 
 # stage C runs if B succeeds
 - stage: C
