@@ -11,12 +11,8 @@ pool:
   demands:
   - agent.name -equals MvsAgent01
   variables:
-  - name: AIkey1
-    value: 'my ai key 1'
-  - name: AIkey2
-    value: 'my ai key 2'
-  - name: AIkey3
-    value: 'my ai key 3'
+  - name: InstrumentationKey
+    value: $(ApplicationInsightsInstrumentationKey1)
 
 
 stages:
@@ -24,11 +20,11 @@ stages:
   displayName: 'test1'
   variables:
   - name: InstrumentationKey
-    value: '%AIkey1%'
+    value: $(ApplicationInsightsInstrumentationKey1)
   jobs:
   - job: A 
     steps:
-    - script: 'echo Write your commands here Job A   $(AIkey1), $(InstrumentationKey)'
+    - script: 'echo Write your commands here Job A   $(ApplicationInsightsInstrumentationKey1), $(InstrumentationKey)'
 
 - stage: B
   displayName: 'test2'
@@ -47,8 +43,8 @@ stages:
   condition: succeeded('B')
   variables:
     - name: InstrumentationKey
-      value: '%AIkey3%'
+      value: $(ApplicationInsightsInstrumentationKey2)
   jobs:
   - job: C 
     steps:
-    - script: 'echo Write your commands here Job C   %AIkey3%,  $(InstrumentationKey)'
+    - script: 'echo Write your commands here Job C   $(ApplicationInsightsInstrumentationKey2),  $(InstrumentationKey)'
