@@ -18,11 +18,19 @@ stages:
   variables:
   - name: ApplicationInsightsInstrumentationKey     
     value: $(ApplicationInsightsInstrumentationKey)
+  jobs:
+  - job: A 
+    steps:
+    - script: 'echo Write your commands here Job A'    
 
 - stage: B
   displayName: 'SafetyLine2'
   dependsOn:
   - A
+  jobs:
+  - job: B 
+    steps:
+    - script: 'echo Write your commands here Job C'   
 
 # stage C runs if B succeeds
 - stage: C
@@ -31,3 +39,7 @@ stages:
   variables:
     - name: ApplicationInsightsInstrumentationKey     
       value: 'my second key'
+  jobs:
+  - job: C 
+    steps:
+    - script: 'echo Write your commands here Job C'
