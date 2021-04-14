@@ -28,8 +28,8 @@ stages:
 
 - stage: B
   displayName: 'test2'
-  dependsOn:
-  - A
+  # dependsOn:
+  # - A
   jobs:
   - job: B 
     steps:
