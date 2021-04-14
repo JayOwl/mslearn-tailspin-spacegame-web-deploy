@@ -20,10 +20,10 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      echo Using an input-macro works: %GLOBAL_MYSECRET%
-          echo Using the env var directly does not work: %GLOBAL_MYSECRET%
-          echo Using a global secret var mapped in the pipeline does not work either: %GLOBAL_MYSECRET%
-          echo Using a global non-secret var mapped in the pipeline works: %GLOBAL_MYSECRET% 
-          echo Using the mapped env var for this task works and is recommended: %GLOBAL_MYSECRET% 
+      echo Using an input-macro works: %VAR1%
+      echo Using the env var directly does not work: %VAR1%
+      echo Using a global secret var mapped in the pipeline does not work either: %GLOBAL_MYSECRET%
+      echo Using a global non-secret var mapped in the pipeline works: %GLOBAL_MYSECRET% 
+      echo Using the mapped env var for this task works and is recommended: %GLOBAL_MYSECRET% 
   # env:
   #   echo MY_MAPPED_ENV_VAR: %GLOBAL_MYSECRET% # the recommended way to map to an env variable
